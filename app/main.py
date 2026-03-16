@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 
+from app.api.v1.main_routes import router as main_router
+
 app = FastAPI()
 
-@app.get("/")
-async def root() -> dict[str, str]:
-    return {"message": "Welcome to the Booking API!"}
+app.include_router(main_router)
