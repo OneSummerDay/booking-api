@@ -2,6 +2,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
+from app.api.v1.auth import router as auth_router
 from app.api.v1.main_routes import router as main_router
 from app.core.config import settings
 from app.core.database import init_db
@@ -22,3 +23,4 @@ app = FastAPI(
 )
 
 app.include_router(main_router, prefix="/api/v1")
+app.include_router(auth_router, prefix="/api/v1")
