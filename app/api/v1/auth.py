@@ -1,3 +1,4 @@
+from app.core.security import get_password_hash
 from fastapi import APIRouter, HTTPException, status, Depends
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -31,7 +32,7 @@ async def register_user(
     
     new_user = User(
         email=user_data.email,
-        hashed_password=User.hash_password(user_data.password),
+        hashed_password=get_password_hash(user_data.password),
     )
 
     db.add(new_user)
